@@ -1,9 +1,10 @@
 <template>
   <div>
-    <h2>Alle Aufgaben</h2>
+    <h2>Erledigte Aufgaben</h2>
+
     <ul class="my-tasklist">
       <TaskItemComponent
-        v-for="taskItem in taskList"
+        v-for="taskItem in finishedTaskList"
         :key="taskItem.id"
         :taskItem="taskItem"
         @toggle-done="onToggleDone(taskItem)"
@@ -11,6 +12,7 @@
         @delete="onDelete(taskItem)"
       />
     </ul>
+
   </div>
 </template>
 
@@ -19,7 +21,7 @@ import TaskItemComponent from './TaskItemComponent.vue'
 import type TaskItem from '@/model/TaskItem'
 
 const emit = defineEmits(['toggle-done', 'edit', 'delete'])
-defineProps<{ taskList: TaskItem[] }>()
+defineProps<{ finishedTaskList: TaskItem[] }>()
 
 function onToggleDone(taskItem: TaskItem) {
   emit('toggle-done', taskItem)
