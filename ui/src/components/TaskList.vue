@@ -3,36 +3,38 @@
         <h1>Meine Aufgaben</h1>
 
         <ul class="my-tasklist">
-            <TaskItem 
-            name="Task 1" 
-            :isDone="false" 
-            description="Testaufgabe"
-            @task-click="onClick">
-            </TaskItem>
 
-            <TaskItem 
-            name="Task 2" 
-            :isDone="true" 
-            description="Abgeschlossene Aufgabe"
-            @task-click="onClick">
-            </TaskItem>
+            <TaskItemComponent
+                v-for="(taskItem, id) in taskList"
+                :key="id"
+                :taskItem="taskItem"
+            />
 
-            <TaskItem 
-            name="Task 3" 
-            :isDone="false" 
-            description="Noch nicht fertig"
-            @task-click="onClick">
-            </TaskItem>
         </ul>
+
+        <button @click="onClick">Hinzufügen</button>
 
     </div>
 </template>
 
 <script setup lang="ts">
-import TaskItem from './TaskItem.vue';
+import { onBeforeMount, onMounted } from 'vue';
+import TaskItemComponent from './TaskItemComponent.vue';
+import type TaskItem from '@/model/TaskItem';
 
-function onClick(payload: { name: string; description: string }) {
-    alert(`Ich bin die TaskList - Name: ${payload.name}, Beschreibung: ${payload.description}`);
+// const taskItemOne: TaskItem = {title: "Aufgabe 1", description: "Mach die Aufgabe weiter", isDone: false};
+// const taskItemDeux: TaskItem = {title: "Aufgabe 2", description: "Yallah mach endlich mal", isDone: false};
+
+const taskList: TaskItem[] = [];
+
+onBeforeMount(() => {
+    // taskList.push(taskItemOne);
+    // taskList.push(taskItemDeux);
+})
+
+function onClick() {
+    // Füge das TaskItem aus der Eingabemaske der Liste hinzu
+    // taskList.push();
 }
 
 </script>

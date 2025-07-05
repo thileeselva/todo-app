@@ -17,7 +17,7 @@ import TaskList from './components/TaskList.vue'
     <!-- STRG + K & STRG + C -->
     <!-- <TheWelcome /> -->
 
-    <TaskList />
+    <TaskList/>
 
   </main>
 </template>
